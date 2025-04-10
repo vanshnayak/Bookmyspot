@@ -1,0 +1,49 @@
+
+app.js
+console.log("Hello")
+var user = require("./user") //user == userName // {userName,userAge,printUserData}
+console.log(user)
+console.log(user.userName)
+console.log(user.userAge)
+user.printUserData(100) // function calling..
+
+
+user.js
+console.log("user file loaded....")
+var userName = "Ram"
+var userAge = 23
+
+const printUserData = (a)=>{
+
+    console.log("print userdata function called from user.js file...",a)
+}
+
+//export
+// module.exports = userName
+// module.exports = userAge
+
+module.exports = {
+    userName,userAge,printUserData
+}
+
+
+
+//https://node5.onrender.com/user/user : domain + endpoints
+//http://localhost:3000/test
+app.get("/test",(req,res)=>{
+    
+    console.log("test api called...")
+
+    res.send("hello test api called...")
+
+})
+
+//http://localhost:3000/users
+app.get("/users",(req,res)=>{
+
+    res.json({
+        message:"user api called...",
+        data:["ram","shyam","seeta"]
+    })
+})
+
